@@ -1,7 +1,14 @@
 <!doctype html>
 <html>
     <body>
-        <canvas id="map" width=1000 height=600 />
+        <div style="position: absolute; left: 10px; top: 10px; width: 1000px; height: 600px;">
+            <canvas id="map" width=1000 height=600></canvas>
+            <div id="topEdge"    style="position: absolute; top:0px  ; left: 50px ; width: 900px; height: 50px;"></div>
+            <div id="bottomEdge" style="position: absolute; top:550px; left: 50px ; width: 900px; height: 50px;"></div>
+            <div id="leftEdge"   style="position: absolute; top:50px ; left: 0px  ; width: 50px ; height: 500px;"></div>
+            <div id="rightEdge"  style="position: absolute; top:50px ; left: 950px; width: 50px ; height: 500px;"></div>
+        </div>
+
         <script type='text/javascript'>
             // wrapper for our game "classes", "methods" and "objects"
             window.sc = {};
@@ -364,43 +371,36 @@
                 down: false,
             };
 
-            window.addEventListener("keydown", function(e){
-                switch(e.keyCode)
-                {
-                    case 37: // left arrow
-                        sc.controls.left = true;
-                        break;
-                    case 38: // up arrow
-                        sc.controls.up = true;
-                        break;
-                    case 39: // right arrow
-                        sc.controls.right = true;
-                        break;
-                    case 40: // down arrow
-                        sc.controls.down = true;
-                        break;
-                }
+            document.getElementById('topEdge').addEventListener("mouseover", function(e){
+                sc.controls.up = true;
             }, false);
 
-            window.addEventListener("keyup", function(e){
-                switch(e.keyCode)
-                {
-                    case 37: // left arrow
-                        sc.controls.left = false;
-                        break;
-                    case 38: // up arrow
-                        sc.controls.up = false;
-                        break;
-                    case 39: // right arrow
-                        sc.controls.right = false;
-                        break;
-                    case 40: // down arrow
-                        sc.controls.down = false;
-                        break;
-                    case 80: // key P pauses the game
-                        sc.togglePause();
-                        break;      
-                }
+            document.getElementById('topEdge').addEventListener("mouseout", function(e){
+                sc.controls.up = false;
+            }, false);
+
+            document.getElementById('bottomEdge').addEventListener("mouseover", function(e){
+                sc.controls.down = true;
+            }, false);
+
+            document.getElementById('bottomEdge').addEventListener("mouseout", function(e){
+                sc.controls.down = false;
+            }, false);
+
+            document.getElementById('leftEdge').addEventListener("mouseover", function(e){
+                sc.controls.left = true;
+            }, false);
+
+            document.getElementById('leftEdge').addEventListener("mouseout", function(e){
+                sc.controls.left = false;
+            }, false);
+
+            document.getElementById('rightEdge').addEventListener("mouseover", function(e){
+                sc.controls.right = true;
+            }, false);
+
+            document.getElementById('rightEdge').addEventListener("mouseout", function(e){
+                sc.controls.right = false;
             }, false);
 
             // -->
